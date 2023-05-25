@@ -31,8 +31,6 @@ create table aquario (
 	descricao VARCHAR(300)
 );
 
-insert into aquario value
-	(1,'aquario 1');
 /* esta tabela deve estar de acordo com o que está em INSERT de sua API do arduino - dat-acqu-ino */
 
 create table medida (
@@ -47,23 +45,11 @@ create table medida (
 	FOREIGN KEY (fk_aquario) REFERENCES aquario(id)
 );
 
-insert into medida (dht11_umidade, dht11_temperatura, momento, fk_aquario)values
-	(10,45, now(), 1),
-	(80,15, now(), 1),
-	(50,10, now(), 1),
-	(26,25, now(), 1),
-	(19,97, now(), 1),
-	(8,32, now(), 1),
-	(12,22, now(), 1);
 
-select * from medida;
-
-insert into medida (dht11_umidade, dht11_temperatura, momento, fk_aquario)values
-	(1,2,now(),1);
 /*
 comando para sql server - banco remoto - ambiente de produção
 */
-/*
+
 CREATE TABLE usuario (
 	id INT PRIMARY KEY IDENTITY(1,1),
 	nome VARCHAR(50),
@@ -77,16 +63,15 @@ CREATE TABLE aviso (
 	descricao VARCHAR(150),
 	fk_usuario INT FOREIGN KEY REFERENCES usuario(id)
 );
-*/
 
--- create table aquario (
+create table aquario (
 /* em nossa regra de negócio, um aquario tem apenas um sensor */
-	/*id INT PRIMARY KEY IDENTITY(1,1),
+	id INT PRIMARY KEY IDENTITY(1,1),
 	descricao VARCHAR(300)
 );
-*/
+
 /* esta tabela deve estar de acordo com o que está em INSERT de sua API do arduino - dat-acqu-ino */
-/*
+
 CREATE TABLE medida (
 	id INT PRIMARY KEY IDENTITY(1,1),
 	dht11_umidade DECIMAL,
@@ -97,12 +82,12 @@ CREATE TABLE medida (
 	momento DATETIME,
 	fk_aquario INT FOREIGN KEY REFERENCES aquario(id)
 );
-*/
+
 /*
 comandos para criar usuário em banco de dados azure, sqlserver,
 com permissão de insert + update + delete + select
 */
-/*
+
 CREATE USER [usuarioParaAPIWebDataViz_datawriter_datareader]
 WITH PASSWORD = '#Gf_senhaParaAPIWebDataViz',
 DEFAULT_SCHEMA = dbo;
@@ -112,4 +97,3 @@ EXEC sys.sp_addrolemember @rolename = N'db_datawriter',
 
 EXEC sys.sp_addrolemember @rolename = N'db_datareader',
 @membername = N'usuarioParaAPIWebDataViz_datawriter_datareader';
-*/
